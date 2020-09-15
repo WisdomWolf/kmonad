@@ -14,6 +14,7 @@
 (defalias
   ⚥   #(ralt 0 a)
   sfp (tap-hold 400 . sft)
+  sup (tap-hold 400 up sft)
   move  (layer-switch multi-overlay)
   mov   #((cmd-button "echo 'switching to multi-overlay layer'") @move) 
   base  (layer-switch main)
@@ -38,11 +39,11 @@
 
 
 (deflayer main
-       tab  _  @mt    grv  [    ]    \    -    =    del
+       tab  _    @mt  grv  [    ]    \    -    =    del
   1    2    3    4    5    6    7    8    9    0    bspc
   q    w    e    r    t    y    u    i    o    p    ret
   a    s    d    f    g    h    j    k    l    '
-  lsft z    x    c    v    b    n    m    ,    .   @sfp
+  lsft z    x    c    v    b    n    m    ,    .   @sup
   lctl lmet lalt      spc  ;    /    left down right
 )
 
@@ -62,7 +63,7 @@
        _    _    @bse _    _    _    _    _    _    _
   _    _    _    _    _    _    _    _    _    _    _
   _    _    _    _    _    _    _    _    _    @pth _
-  @thn _    @dat _    _    _    _    _    _    _    _
-  @xtn _    _    _    _    _    _    _    _    @xth
-  @tnr _    _         _    _    _    _    @tnh _
+  @thn _    @dat _    _    _    _    _    _    _
+  @xtn _    _    _    _    _    _    _    _    up   @xth
+  @tnr _    _         spc  _    _    left down right
 )
