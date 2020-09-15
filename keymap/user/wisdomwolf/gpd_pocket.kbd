@@ -14,8 +14,12 @@
 (defalias
   ⚥   #(ralt 0 a)
   sfp (tap-hold 400 . sft)
-  mov  (layer-switch multi-overlay)
-  bse  (layer-switch main)
+  move  (layer-switch multi-overlay)
+  mov   #((cmd-button "echo 'switching to multi-overlay layer'") @move) 
+  base  (layer-switch main)
+  cmd_base (cmd-button "echo 'switching to base layer'")
+  bse   #(@cmd_base @base)
+  ;;mt  (multi-tap 300 @mov caps)
   date (cmd-button "date | tee /tmp/kmonad_example.txt")   ;; Append date to tmpfile
   path (cmd-button "echo $PATH | tee /tmp/kmonad_path.txt") ;; Write out PATH
   dat #(@date d)
@@ -34,11 +38,11 @@
 
 
 (deflayer main
-       tab  _    @mov grv  [    ]    \    -    =    del
+       tab  _  @mov    grv  [    ]    \    -    =    del
   1    2    3    4    5    6    7    8    9    0    bspc
   q    w    e    r    t    y    u    i    o    p    ret
   a    s    d    f    g    h    j    k    l    '
-  lsft z    x    c    v    b    n    m    ,    up   @sfp
+  lsft z    x    c    v    b    n    m    ,    .   @sfp
   lctl lmet lalt      spc  ;    /    left down right
 )
 
@@ -48,6 +52,9 @@
   thn (tap-hold-next 400 x lsft)
   tnr (tap-next-release x lsft)
   tnh (tap-hold-next-release 2000 x lsft)
+
+  ;; Used it the colemak layer
+  xcp (tap-hold-next 400 esc ctl)
 )
 
 ;; Some of the buttons used here are defined in the next section
@@ -57,5 +64,5 @@
   _    _    _    _    _    _    _    _    _    @pth _
   @thn _    @dat _    _    _    _    _    _    _    _
   @xtn _    _    _    _    _    _    _    _    @xth
-  @tnr _ _      _    _    _    _    @tnh _
+  @tnr @dat @pth      _    _    _    _    @tnh _
 )
