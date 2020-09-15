@@ -19,7 +19,7 @@
   base  (layer-switch main)
   cmd_base (cmd-button "echo 'switching to base layer'")
   bse   #(@cmd_base @base)
-  ;;mt  (multi-tap 300 @mov caps)
+  mt  (multi-tap 300 @mov caps)
   date (cmd-button "date | tee /tmp/kmonad_example.txt")   ;; Append date to tmpfile
   path (cmd-button "echo $PATH | tee /tmp/kmonad_path.txt") ;; Write out PATH
   dat #(@date d)
@@ -38,7 +38,7 @@
 
 
 (deflayer main
-       tab  _  @mov    grv  [    ]    \    -    =    del
+       tab  _  @mt    grv  [    ]    \    -    =    del
   1    2    3    4    5    6    7    8    9    0    bspc
   q    w    e    r    t    y    u    i    o    p    ret
   a    s    d    f    g    h    j    k    l    '
@@ -64,5 +64,5 @@
   _    _    _    _    _    _    _    _    _    @pth _
   @thn _    @dat _    _    _    _    _    _    _    _
   @xtn _    _    _    _    _    _    _    _    @xth
-  @tnr @dat @pth      _    _    _    _    @tnh _
+  @tnr _    _         _    _    _    _    @tnh _
 )
