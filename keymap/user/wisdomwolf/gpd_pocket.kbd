@@ -9,12 +9,14 @@
   ;; foo (tap-hold 200 x sft)
   foo (tap-hold-next-release 2000 x sft)
   ⚥   #(ralt 0 a)
-
+  s.ft (tap-hold 400 . sft)
+  mov  (layer-toggle multi-overlay) 
+  bse  (layer-toggle main)
 )
 
 
 (defsrc
-  esc  tab  tab  caps grv  [    ]    \    -    =    del
+  esc  tab  cmp  caps grv  [    ]    \    -    =    del
   1    2    3    4    5    6    7    8    9    0    bspc
   q    w    e    r    t    y    u    i    o    p    /
   a    s    d    f    g    h    j    k    l    ret
@@ -24,7 +26,31 @@
 
 
 (deflayer main
-  tab  q    w    e    r    t
-  caps @⚥    r    s    t    d
-  @foo z    x    c    v    b
-  )
+  esc  tab  tab  @mov grv  [    ]    \    -    =    del
+  1    2    3    4    5    6    7    8    9    0    bspc
+  q    w    e    r    t    y    u    i    o    p    /
+  a    s    d    f    g    h    j    k    l    ret
+  lsft z    x    c    v    b    n    m    ,    up   @s.ft
+  lctl lmet lalt      spc  ;    '    left down right
+)
+
+(defalias
+  xtn (tap-next x lsft)         ;; Shift that does 'x' on tap
+  xth (tap-hold 400 x lsft)     ;; Long delay for easier testing
+  thn (tap-hold-next 400 x lsft)
+  tnr (tap-next-release x lsft)
+  tnh (tap-hold-next-release 2000 x lsft)
+
+  ;; Used it the colemak layer
+  xcp (tap-hold-next 400 esc ctl)
+)
+
+;; Some of the buttons used here are defined in the next section
+(deflayer multi-overlay
+  @mt  _    _    @bse    _    _    _    _    _    @rem _
+  _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _
+  @thn _    _    _    _    _    _    _    _    _    _
+  @xtn _    _    _    _    _    _    _    _    @xth
+  @tnr _    _              _              _    @tnh _
+)
